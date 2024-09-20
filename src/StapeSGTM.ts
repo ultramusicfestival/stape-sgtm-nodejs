@@ -4,7 +4,7 @@ import { escape } from 'querystring';
 import axios, { AxiosError } from 'axios';
 import { StapeSGTMError } from './StapeSGTMError';
 
-export class StapeSGTM {
+export default class StapeSGTM {
   private config: Required<StapeSGTMOptions>;
 
   constructor({
