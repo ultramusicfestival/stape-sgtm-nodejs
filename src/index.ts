@@ -1,5 +1,8 @@
-export { default } from './StapeSGTM';
-export * as transformations from './transformations';
-export * from './types/EventData';
-export * from './types/StapeSGTMOptions';
-export * from './StapeSGTMError';
+import StapeSGTM from './StapeSGTM';
+import * as transformations from './transformations';
+import { EventData } from './types/EventData';
+import { StapeSGTMOptions } from './types/StapeSGTMOptions';
+import { StapeSGTMError } from './StapeSGTMError';
+
+export default StapeSGTM;
+export { transformations, EventData, StapeSGTMOptions, StapeSGTMError };
