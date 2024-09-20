@@ -21,7 +21,9 @@ export type UserData = Partial<{
 export type EventData = Partial<{
   client_id: string;
   currency: string;
+  event_time: number;
   ip_override: string;
+  items: Array<EcommerceItem>;
   language: string;
   page_encoding: string;
   page_hostname: string;
@@ -30,9 +32,35 @@ export type EventData = Partial<{
   page_referrer: string;
   page_title: string;
   screen_resolution: string;
+  transaction_id: string;
   user_agent: string;
   user_data: UserData;
   user_id: string;
   value: number;
   viewport_size: string;
-}>;
+}> & {
+  [key: string]: any;
+};
+
+export type EcommerceItem = Partial<{
+  item_id: string;
+  item_name: string;
+  affiliation: string;
+  coupon: string;
+  discount: number;
+  index: number;
+  item_brand: string;
+  item_category: string;
+  item_category2: string;
+  item_category3: string;
+  item_category4: string;
+  item_category5: string;
+  item_list_id: string;
+  item_list_name: string;
+  item_variant: string;
+  location_id: string;
+  price: number;
+  quantity: number;
+}> & {
+  [key: string]: any;
+};
