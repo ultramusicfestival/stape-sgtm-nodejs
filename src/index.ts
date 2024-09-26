@@ -5,4 +5,4 @@ import { StapeSGTMOptions } from './types/StapeSGTMOptions';
 import { StapeSGTMError } from './StapeSGTMError';
 
 export default StapeSGTM;
-export { transformations, EventData, StapeSGTMOptions, StapeSGTMError };
+export { StapeSGTM, transformations, EventData, StapeSGTMOptions, StapeSGTMError };
