@@ -1,7 +1,7 @@
 import { StapeSGTMOptions } from './types/StapeSGTMOptions';
 import { EventData } from './types/EventData';
 import { escape } from 'querystring';
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { StapeSGTMError } from './StapeSGTMError';
 
 export default class StapeSGTM {
@@ -10,12 +10,14 @@ export default class StapeSGTM {
   constructor({
     gtm_server_domain,
     request_path = '/data',
+    token = '',
     richsstsse = false,
     protocol_version = 2,
   }: StapeSGTMOptions) {
     this.config = {
       gtm_server_domain,
       request_path,
+      token,
       richsstsse,
       protocol_version,
     };
@@ -44,7 +46,13 @@ export default class StapeSGTM {
         v: this.config.protocol_version,
       };
 
-      const response = await axios.post<R>(url.toString(), postData);
+      const postConfig: AxiosRequestConfig = {};
+
+      if (this.config.token) {
+        postConfig.headers = { Authorization: `Bearer ${this.config.token}` }
+      }
+
+      const response = await axios.post<R>(url.toString(), postData, postConfig);
       return response.data;
     } catch (error) {
       const response = (error as AxiosError).response;
