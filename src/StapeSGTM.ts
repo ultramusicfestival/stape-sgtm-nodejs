@@ -11,6 +11,7 @@ export default class StapeSGTM {
     gtm_server_domain,
     request_path = '/data',
     token = '',
+    preview_header = '',
     richsstsse = false,
     protocol_version = 2,
   }: StapeSGTMOptions) {
@@ -18,6 +19,7 @@ export default class StapeSGTM {
       gtm_server_domain,
       request_path,
       token,
+      preview_header,
       richsstsse,
       protocol_version,
     };
@@ -49,7 +51,11 @@ export default class StapeSGTM {
       const postConfig: AxiosRequestConfig = {};
 
       if (this.config.token) {
-        postConfig.headers = { Authorization: `Bearer ${this.config.token}` }
+        postConfig.headers!['Authorization'] = `Bearer ${this.config.token}`;
+      }
+
+      if (this.config.preview_header) {
+        postConfig.headers!['X-Gtm-Server-Preview'] = this.config.preview_header;
       }
 
       const response = await axios.post<R>(url.toString(), postData, postConfig);
