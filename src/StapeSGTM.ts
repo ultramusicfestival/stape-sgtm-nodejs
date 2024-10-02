@@ -61,12 +61,16 @@ export default class StapeSGTM {
       const response = await axios.post<R>(url.toString(), postData, postConfig);
       return response.data;
     } catch (error) {
-      const response = (error as AxiosError).response;
-      throw new StapeSGTMError({
-        status: response?.status,
-        statusText: response?.statusText,
-        error: response?.data,
-      });
+      if (axios.isAxiosError(error)) {
+        throw new StapeSGTMError({
+          status: error.response?.status,
+          statusText: error.response?.statusText,
+          error: error.response?.data,
+        });
+      }
+      else {
+        throw new StapeSGTMError({error: error});
+      }
     }
   }
 
