@@ -48,7 +48,7 @@ export default class StapeSGTM {
         v: this.config.protocol_version,
       };
 
-      const postConfig: AxiosRequestConfig = {};
+      const postConfig: AxiosRequestConfig = { headers: {} };
 
       if (this.config.token) {
         postConfig.headers!['Authorization'] = `Bearer ${this.config.token}`;
