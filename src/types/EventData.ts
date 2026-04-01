@@ -78,8 +78,11 @@ export type EventData = Partial<{
   // Debug
   debug_mode: boolean;
 
-  // Cookie / ID pass-through for ad platform tags (FB, TikTok, Snap, etc.)
+  // Sent as Cookie header — readable by getCookieValues() in all sGTM tags
   cookies: Record<string, string>;
+
+  // Sent in event data body — readable by Stape tags via eventData.common_cookie
+  common_cookie: Record<string, string>;
 }> & {
   [key: string]: any;
 };

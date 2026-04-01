@@ -58,6 +58,12 @@ export default class StapeSGTM {
         postConfig.headers!['X-Gtm-Server-Preview'] = this.config.preview_header;
       }
 
+      if (eventData.cookies && typeof eventData.cookies === 'object') {
+        postConfig.headers!['Cookie'] = Object.entries(eventData.cookies)
+          .map(([key, value]) => `${key}=${value}`)
+          .join('; ');
+      }
+
       const response = await axios.post<R>(url.toString(), postData, postConfig);
       return response.data;
     } catch (error) {
