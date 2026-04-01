@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { StapeSGTMOptions } from './types/StapeSGTMOptions';
-import { StapeSGTM } from './StapeSGTM';
+import StapeSGTM from './StapeSGTM';
 import { EventData } from './types/EventData';
 import { StapeSGTMError } from './StapeSGTMError';
 
@@ -37,6 +37,7 @@ describe('StapeSGTM', () => {
         event_name: 'event',
         v: 2,
       },
+      { headers: {} },
     );
   });
 
@@ -55,6 +56,7 @@ describe('StapeSGTM', () => {
         event_name: 'event',
         v: 2,
       },
+      { headers: {} },
     );
   });
 
@@ -70,6 +72,7 @@ describe('StapeSGTM', () => {
         event_name: 'event',
         v: 2,
       },
+      { headers: {} },
     );
   });
 
