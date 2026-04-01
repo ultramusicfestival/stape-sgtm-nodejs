@@ -16,14 +16,24 @@ export type UserData = Partial<{
   phone_number: string;
   sha256_phone_number: string;
   address: Address;
+  new_customer: boolean;
 }>;
 
+export type UserProperty = {
+  value: string | number;
+};
+
 export type EventData = Partial<{
+  // Core identifiers
   client_id: string;
-  currency: string;
-  event_time: number;
-  ip_override: string;
-  items: Array<EcommerceItem>;
+  user_id: string;
+  session_id: string;
+
+  // User data & properties
+  user_data: UserData;
+  user_properties: Record<string, UserProperty>;
+
+  // Page / environment
   language: string;
   page_encoding: string;
   page_hostname: string;
@@ -32,12 +42,44 @@ export type EventData = Partial<{
   page_referrer: string;
   page_title: string;
   screen_resolution: string;
-  transaction_id: string;
-  user_agent: string;
-  user_data: UserData;
-  user_id: string;
-  value: number;
   viewport_size: string;
+  user_agent: string;
+  ip_override: string;
+
+  // Timing
+  event_time: number;
+  engagement_time_msec: number;
+
+  // Campaign / UTM
+  campaign_id: string;
+  campaign: string;
+  campaign_source: string;
+  campaign_medium: string;
+  campaign_term: string;
+  campaign_content: string;
+
+  // Ecommerce
+  currency: string;
+  value: number;
+  transaction_id: string;
+  tax: number;
+  shipping: number;
+  coupon: string;
+  payment_type: string;
+  items: Array<EcommerceItem>;
+
+  // Content / interaction
+  search_term: string;
+  content_type: string;
+  content_id: string;
+  method: string;
+  non_interaction: boolean;
+
+  // Debug
+  debug_mode: boolean;
+
+  // Cookie / ID pass-through for ad platform tags (FB, TikTok, Snap, etc.)
+  cookies: Record<string, string>;
 }> & {
   [key: string]: any;
 };
@@ -61,6 +103,10 @@ export type EcommerceItem = Partial<{
   location_id: string;
   price: number;
   quantity: number;
+  creative_name: string;
+  creative_slot: string;
+  promotion_id: string;
+  promotion_name: string;
 }> & {
   [key: string]: any;
 };
