@@ -1,10 +1,17 @@
 {
-  "name": "stape-sgtm-nodejs",
+  "name": "@ultramusicfestival/stape-sgtm-nodejs",
   "version": "1.0.2",
   "license": "Apache-2.0",
   "author": "stape-io",
   "description": "NodeJS SDK for stape",
-  "homepage": "https://github.com/stape-io/stape-sgtm-nodejs",
+  "homepage": "https://github.com/ultramusicfestival/stape-sgtm-nodejs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ultramusicfestival/stape-sgtm-nodejs.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
